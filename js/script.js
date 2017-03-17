@@ -20,16 +20,13 @@ $("document").ready(function () {
     $("#right_click_menu [name='edit_node']").on("click", function () {
         showcase.editNode();
     });
-    $("#right_click_menu [name='delete_node']").on("click", function () {
-        showcase.deleteSelected();
-    });
     $("#right_click_menu [name='add_edge']").on("click", function () {
         showcase.addEdgeMode();
     });
     $("#right_click_menu [name='edit_edge']").on("click", function () {
         showcase.editEdgeMode();
     });
-    $("#right_click_menu [name='delete_edge']").on("click", function () {
+    $("#right_click_menu [name='delete_selected']").on("click", function () {
         showcase.deleteSelected();
     });
 });

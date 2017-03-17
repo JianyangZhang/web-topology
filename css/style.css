@@ -2,12 +2,6 @@ body {
     font-family: "Microsoft YaHei";
 }
 
-body button{
-    -webkit-border-radius: 0 !important;
-    -moz-border-radius: 0 !important;
-    border-radius: 0 !important;
-}
-
 #main {
     border: solid 1px #D6D9D8;
     border-top-width: 0;
@@ -22,6 +16,7 @@ body button{
     position: absolute;
     text-align:center;
     display: table;
+    background-color: white;
 }
 
 #right_click_menu {
@@ -35,21 +30,26 @@ body button{
     font-size: 12.5px;
     line-height: 14px;
     font-weight: bold;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
 }
 
 .form-control {
     width: 200px;
     height: 28px;
+    padding: 0px;
     display: inline;
 }
 
 #console .btn-sm {
-    padding: 2px 5px;
+    padding: 0px 5px 1px 5px;
     font-size: 12px;
     height: 24px;
     line-height: 12px;
     vertical-align: middle;
     display: block;
+    border-radius: 12px;
 }
 
 .button-wrapper {

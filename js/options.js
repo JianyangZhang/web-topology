@@ -1,37 +1,119 @@
 var showcase;
 
 // create nodes
+/*
+--------------------------------------------------
+|                      |                         |
+|                      |                         |
+|      (-,-)           |      (+,-)              |
+|                      |                         |
+|                      |                         |
+|----------------------O-------------------------x
+|                      |                         |
+|                      |                         |
+|      (-,+)           |      (+,+)              |
+|                      |                         |
+|                      |                         |
+|----------------------x-------------------------|
+*/
+/* "alpha", "bravo", "charlie", "delta", "echo", "foxtrot", "golf", "hotel", "india", "juliett", "kilo", "lima", "mike", "november", "oscar",
+"papa", "quebec", "romeo", "sierra", "tango", "uniform", "victor", "whiskey", "xray", "yankee", "zulu" */
 var nodes = new vis.DataSet([{
     id: 1,
-    label: 'alpha'
-
+    label: 'alpha-1',
+    image: './img/user.png',
+    x: -450, // 坐标0，0位于canvas正中间
+    y: 0
 }, {
     id: 2,
-    label: 'bravo'
+    label: 'bravo-2',
+    image: './img/user.png',
+    x: -450,
+    y: 100
 }, {
     id: 3,
-    label: 'charlie'
+    label: 'charlie-3',
+    image: './img/user.png',
+    x: -450,
+    y: 200
 }, {
     id: 4,
-    label: 'delta'
+    label: 'delta-4',
+    image: './img/api.png',
+    x: -150,
+    y: -220
 }, {
     id: 5,
-    label: 'echo'
+    label: 'echo-5',
+    image: './img/api.png',
+    x: -150,
+    y: -50
+}, {
+    id: 6,
+    label: 'foxtrot-6',
+    image: './img/api.png',
+    x: -150,
+    y: 150
+}, {
+    id: 7,
+    label: 'golf-7',
+    image: './img/cloud.png',
+    x: 150,
+    y: 20
+}, {
+    id: 8,
+    label: 'hotel-8',
+    image: './img/cloud.png',
+    x: 150,
+    y: 150
+}, {
+    id: 9,
+    label: 'india-9',
+    image: './img/disk.png',
+    x: 450,
+    y: 0
+}, {
+    id: 10,
+    label: 'juliett-10',
+    image: './img/disk.png',
+    x: 450,
+    y: 250
 }]);
 
 // create edges
 var edges = new vis.DataSet([{
     from: 1,
-    to: 2
-}, {
-    from: 2,
-    to: 3
-}, {
-    from: 2,
     to: 4
+}, {
+    from: 1,
+    to: 5
 }, {
     from: 2,
     to: 5
+}, {
+    from: 2,
+    to: 6
+}, {
+    from: 3,
+    to: 6
+}, {
+    from: 3,
+    to: 10
+}, {
+    from: 4,
+    to: 9
+}, {
+    from: 5,
+    to: 7
+},{
+    from: 5,
+    to: 8
+},{
+    from: 7,
+    to: 9
+},{
+    from: 7,
+    to: 10
 }]);
 
 // create a container
@@ -50,24 +132,27 @@ var options = {
     clickToUse: false,
     nodes: {
         shape: 'circularImage',
-        brokenImage: "./img/pokeball.png",
-        image: "./img/pokeball.png",
+        brokenImage: "./img/default.png",
+        image: "./img/default.png",
         size: 20,
-
         physics: false,
         shadow: false,
+        shapeProperties: {
+            interpolation: true,
+            useImageSize: false
+        },
         color: {
             border: "black",
-            background: "#C6C6C6",
+            background: "white",
             highlight: {
                 border: "#58BB12",
-                background: "#C6C6C6",
+                background: "#58BB12",
             }
         }
     },
     edges: {
         color: {
-            color: "black",
+            color: "gray",
             highlight: "#58BB12"
         },
         arrows: {
@@ -87,6 +172,11 @@ var options = {
                 type: 'circle'
             }
         },
+        smooth: {
+            type: "cubicBezier",
+            forceDirection: "horizontal",
+            roundness: 0.5
+        }
     },
     manipulation: {
         enabled: true,
@@ -95,13 +185,13 @@ var options = {
         addEdge: true,
         editNode: function (nodeInfo, callback) {
             var edit_node_shape_selector = $(
-                '<select id="edit_node_shape"><option value="origin">stay the same</option><option value="ellipse">ellipse</option><option value="circle">circle</option><option value="database">database</option><option value="box">box</option></select>'
+                '<span>&nbsp;Node Shape: </span><select id="edit_node_shape" class="form-control"><option value="origin">stay the same</option><option value="ellipse">ellipse</option><option value="circle">circle</option><option value="database">database</option><option value="box">box</option></select>'
             );
             $("#console").append(
                 '<span>Node Label: </span><input type="text" class="form-control" id="edit_node_label" />',
                 edit_node_shape_selector,
-                '<div class="button-wrapper"><button type="button" class="btn btn-success btn-sm" id="edit_node_confirm">confirm</button></div>',
-                '<div class="button-wrapper"><button type="button" class="btn btn-danger btn-sm" id="edit_node_cancel">cancel</button></div>'
+                '&nbsp;<div class="button-wrapper"><button type="button" class="btn btn-success btn-sm" id="edit_node_confirm">confirm</button></div>',
+                '&nbsp;<div class="button-wrapper"><button type="button" class="btn btn-danger btn-sm" id="edit_node_cancel">cancel</button></div>'
             );
             $("#console").css("left", "2px");
             $("#console").css("bottom", "2px");
@@ -134,7 +224,7 @@ var options = {
     },
     layout: {
         hierarchical: {
-            enabled: true,
+            enabled: false,
             direction: "LR",
             sortMethod: "directed"
         }
