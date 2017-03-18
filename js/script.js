@@ -66,48 +66,125 @@ $("document").ready(function () {
         $("#change_layout_confirm").on("click", function () {
             switch ($("#change_layout").val()) {
                 case "up-down":
-                    options.layout.hierarchical.direction = "UD";
-                    options.layout.hierarchical.enabled = true;
-                    options.layout.hierarchical.nodeSpacing = 200;
-                    options.edges.smooth.forceDirection = "vertical";
-                    showcase.setOptions(options);
+                    var updateOptions = {
+                        layout: {
+                            hierarchical: {
+                                enabled: true,
+                                direction: "UD",
+                                sortMethod: "directed",
+                                nodeSpacing: 200,
+                                edgeMinimization: true
+                            }
+                        },
+                        edges: {
+                            smooth: {
+                                enabled: true,
+                                type: "cubicBezier",
+                                forceDirection: "vertical",
+                                roundness: 0.5
+                            }
+                        }
+                    }
+                    showcase.setOptions(updateOptions);
                     current_layout = "up-down";
                     break;
                 case "left-right":
-                    options.layout.hierarchical.direction = "LR";
-                    options.layout.hierarchical.enabled = true;
-                    options.layout.hierarchical.nodeSpacing = 100;
-                    options.edges.smooth.forceDirection = "horizontal";
-                    showcase.setOptions(options);
+                    var updateOptions = {
+                        layout: {
+                            hierarchical: {
+                                enabled: true,
+                                direction: "LR",
+                                sortMethod: "directed",
+                                nodeSpacing: 100,
+                                edgeMinimization: true
+                            }
+                        },
+                        edges: {
+                            smooth: {
+                                enabled: true,
+                                type: "cubicBezier",
+                                forceDirection: "horizontal",
+                                roundness: 0.5
+                            }
+                        }
+                    }
+                    showcase.setOptions(updateOptions);
                     current_layout = "left-right";
                     break;
                 case "right-left":
-                    options.layout.hierarchical.direction = "RL";
-                    options.layout.hierarchical.enabled = true;
-                    options.layout.hierarchical.nodeSpacing = 100;
-                    options.edges.smooth.forceDirection = "vertical";
-                    showcase.setOptions(options);
+                    var updateOptions = {
+                        layout: {
+                            hierarchical: {
+                                enabled: true,
+                                direction: "RL",
+                                sortMethod: "directed",
+                                nodeSpacing: 100,
+                                edgeMinimization: true
+                            }
+                        },
+                        edges: {
+                            smooth: {
+                                enabled: true,
+                                type: "cubicBezier",
+                                forceDirection: "horizontal",
+                                roundness: 0.5
+                            }
+                        }
+                    }
+                    showcase.setOptions(updateOptions);
                     current_layout = "right-left";
                     break;
                 case "down-up":
-                    options.layout.hierarchical.direction = "DU";
-                    options.layout.hierarchical.enabled = true;
-                    options.layout.hierarchical.nodeSpacing = 200;
-                    options.edges.smooth.forceDirection = "horizontal";
-                    showcase.setOptions(options);
+                    var updateOptions = {
+                        layout: {
+                            hierarchical: {
+                                enabled: true,
+                                direction: "DU",
+                                sortMethod: "directed",
+                                nodeSpacing: 200,
+                                edgeMinimization: true
+                            }
+                        },
+                        edges: {
+                            smooth: {
+                                enabled: true,
+                                type: "cubicBezier",
+                                forceDirection: "vertical",
+                                roundness: 0.5
+                            }
+                        }
+                    }
+                    showcase.setOptions(updateOptions);
                     current_layout = "down-up";
                     break;
                 case "default":
-                    options.layout.hierarchical.enabled = false;
-                    options.edges.smooth = {};
-                    showcase.setOptions(options);
+                    var updateOptions = {
+                        layout: {
+                            hierarchical: {
+                                enabled: false,
+                                direction: "LR",
+                                sortMethod: "directed",
+                                nodeSpacing: 100,
+                                edgeMinimization: true
+                            }
+                        },
+                        edges: {
+                            smooth: {
+                                enabled: true,
+                                type: "cubicBezier",
+                                forceDirection: "horizontal",
+                                roundness: 0.5
+                            }
+                        }
+                    }
+                    showcase.setOptions(updateOptions);
                     current_layout = "default";
                     break;
                 default:
                     current_layout = "default";
                     break;
             }
-            console.log(options);
+            // console.log(options);
             $("#console").html("");
         });
         $("#change_layout_cancel").on("click", function () {
