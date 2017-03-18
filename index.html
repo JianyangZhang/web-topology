@@ -4,22 +4,62 @@
 		<meta charset="utf-8" />
 		<title>topology</title>
 		<link href="./lib/vis/dist/vis.css" rel="stylesheet" type="text/css" />
-		<link href="./css/font-awesome.css" rel="stylesheet" />
-		<link href="./css/bootstrap.css" rel="stylesheet" />
+		<link href="./lib/bootstrap/bootstrap.css" rel="stylesheet" />
+		<link href="./lib/fontawesome/css/font-awesome.css" rel="stylesheet" />
 		<link href="./css/style.css" rel="stylesheet" type="text/css" />
-
 	</head>
 	<body>
 		<div id="main">
-			<div id="showcase"></div>
-			<div id="console"></div>
+			<div id="toolbar">
+				<div class="btn-group" role="group">
+					<button name="add_node" class="btn btn-primary">
+						<i class="fa fa-plus-circle fa-inverse fa-lg" aria-hidden="true">
+						</i>
+						<span>&nbsp;add node</span>
+					</button>
+					<button name="edit_node" class="btn btn-primary">
+						<i class="fa fa-cog fa-inverse fa-lg" aria-hidden="true">
+						</i>
+						<span>&nbsp;edit node</span>
+					</button>
+					<button name="add_edge" class="btn btn-info">
+						<i class="fa fa-arrows-h fa-inverse fa-lg" aria-hidden="true">
+						</i>
+						<span>&nbsp;add edge</span>
+					</button>
+					<button name="edit_edge" class="btn btn-info">
+						<i class="fa fa-link fa-inverse fa-lg" aria-hidden="true">
+						</i>
+						<span>&nbsp;edit edge</span>
+					</button>
+					<button name="delete_selected" class="btn btn-danger">
+						<i class="fa fa-trash-o fa-inverse fa-lg" aria-hidden="true">
+						</i>
+						<span>&nbsp;delete</span>
+					</button>
+					<button name="change_layout" class="btn btn-warning">
+						<i class="fa fa-sitemap fa-inverse fa-lg" aria-hidden="true">
+						</i>
+						<span>&nbsp;layout</span>
+					</button>
+				</div>
+			</div>
+			<div id="showcase">
+			</div>
+			<div id="console">
+			</div>
 		</div>
 		<div id="right_click_menu">
-			<button type="button" class="btn btn-primary btn-sm" name="add_node">add node</button><br/>
-			<button type="button" class="btn btn-primary btn-sm" name="edit_node">edit node</button><br/>
-			<button type="button" class="btn btn-info btn-sm" name="add_edge">add edge</button><br/>
-			<button type="button" class="btn btn-info btn-sm" name="edit_edge">edit edge</button><br/>
-			<button type="button" class="btn btn-danger btn-sm" name="delete_selected">delete</button><br/>
+			<button type="button" class="btn btn-primary btn-sm" name="add_node">add node</button>
+			<br/>
+			<button type="button" class="btn btn-primary btn-sm" name="edit_node">edit node</button>
+			<br/>
+			<button type="button" class="btn btn-info btn-sm" name="add_edge">add edge</button>
+			<br/>
+			<button type="button" class="btn btn-info btn-sm" name="edit_edge">edit edge</button>
+			<br/>
+			<button type="button" class="btn btn-danger btn-sm" name="delete_selected">delete</button>
+			<br/>
 		</div>
 		<script src="./lib/jquery/jquery-3.1.1.js" type="text/javascript">
 		</script>
@@ -27,6 +67,8 @@
 		</script>
 		<script src="./lib/bootstrap/bootstrap.js" type="text/javascript">
 		</script>
+		<!--<script src="./lib/underscore/underscore.js" type="text/javascript">
+		</script>-->
 		<script src="./js/options.js" type="text/javascript">
 		</script>
 		<script src="./js/script.js" type="text/javascript">

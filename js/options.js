@@ -1,5 +1,5 @@
 var showcase;
-
+var current_layout = "default";
 // create nodes
 /*
 --------------------------------------------------
@@ -105,13 +105,13 @@ var edges = new vis.DataSet([{
 }, {
     from: 5,
     to: 7
-},{
+}, {
     from: 5,
     to: 8
-},{
+}, {
     from: 7,
     to: 9
-},{
+}, {
     from: 7,
     to: 10
 }]);
@@ -173,23 +173,25 @@ var options = {
             }
         },
         smooth: {
+            enabled: true,
             type: "cubicBezier",
             forceDirection: "horizontal",
             roundness: 0.5
         }
     },
     manipulation: {
-        enabled: true,
+        enabled: false,
         initiallyActive: true,
         addNode: true,
         addEdge: true,
         editNode: function (nodeInfo, callback) {
-            var edit_node_shape_selector = $(
-                '<span>&nbsp;Node Shape: </span><select id="edit_node_shape" class="form-control"><option value="origin">stay the same</option><option value="ellipse">ellipse</option><option value="circle">circle</option><option value="database">database</option><option value="box">box</option></select>'
+            $("#console").html("");
+            var layout_selector = $(
+                '<span>&nbsp;Node Shape:&nbsp;</span><select id="edit_node_shape" class="form-control"><option value="origin">stay the same</option><option value="ellipse">ellipse</option><option value="circle">circle</option><option value="database">database</option><option value="box">box</option></select>'
             );
             $("#console").append(
-                '<span>Node Label: </span><input type="text" class="form-control" id="edit_node_label" />',
-                edit_node_shape_selector,
+                '<span>Node Label:&nbsp;</span><input type="text" class="form-control" id="edit_node_label" />',
+                layout_selector,
                 '&nbsp;<div class="button-wrapper"><button type="button" class="btn btn-success btn-sm" id="edit_node_confirm">confirm</button></div>',
                 '&nbsp;<div class="button-wrapper"><button type="button" class="btn btn-danger btn-sm" id="edit_node_cancel">cancel</button></div>'
             );
@@ -205,13 +207,11 @@ var options = {
                 nodeInfo.shadow = false; // vis.js glitch
                 callback(nodeInfo);
                 $("#console").html("");
-                $("#console").css("height", "0px");
             });
             $("#edit_node_cancel").on("click", function () {
                 showcase.disableEditMode();
                 showcase.enableEditMode();
                 $("#console").html("");
-                $("#console").css("height", "0px");
             });
         },
         editEdge: true,
@@ -226,7 +226,9 @@ var options = {
         hierarchical: {
             enabled: false,
             direction: "LR",
-            sortMethod: "directed"
+            sortMethod: "directed",
+            nodeSpacing: 100,
+            edgeMinimization: true
         }
     }
 };
