@@ -30,6 +30,7 @@ button {
 #right_click_menu {
     width: 100px;
     position: absolute;
+    box-shadow: 3px 3px 1.5px #888888;
 }
 
 #right_click_menu button {
