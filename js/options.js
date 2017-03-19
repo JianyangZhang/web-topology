@@ -1,5 +1,8 @@
 var showcase;
-var current_layout = "default";
+var states = {
+    current_layout: "default",
+    current_edit_lock: "unlocked"
+}
 // create nodes
 /*
 --------------------------------------------------
@@ -148,6 +151,10 @@ var options = {
                 border: "#58BB12",
                 background: "#58BB12",
             }
+        },
+        fixed: {
+            x: false,
+            y: false
         }
     },
     edges: {
@@ -184,8 +191,9 @@ var options = {
         initiallyActive: true,
         addNode: true,
         addEdge: true,
-        editNode: function (nodeInfo, callback) {
+        editNode: function(nodeInfo, callback) {
             $("#console").html("");
+            $("#console").hide();
             var layout_selector = $(
                 '<span>&nbsp;Node Shape:&nbsp;</span><select id="edit_node_shape" class="form-control"><option value="origin">stay the same</option><option value="ellipse">ellipse</option><option value="circle">circle</option><option value="database">database</option><option value="box">box</option></select>'
             );
@@ -195,29 +203,27 @@ var options = {
                 '&nbsp;<div class="button-wrapper"><button type="button" class="btn btn-success btn-sm" id="edit_node_confirm">confirm</button></div>',
                 '&nbsp;<div class="button-wrapper"><button type="button" class="btn btn-danger btn-sm" id="edit_node_cancel">cancel</button></div>'
             );
-            $("#console").css("left", "2px");
-            $("#console").css("bottom", "2px");
-
             $("#edit_node_label").val(nodeInfo.label);
-            $("#edit_node_confirm").on("click", function () {
+            $("#console").fadeIn(250);
+            $("#edit_node_confirm").on("click", function() {
                 nodeInfo.label = $("#edit_node_label").val();
                 if ($("#edit_node_shape").val() != "origin") {
                     nodeInfo.shape = $("#edit_node_shape").val();
                 }
                 nodeInfo.shadow = false; // vis.js glitch
                 callback(nodeInfo);
-                $("#console").html("");
+                $("#console").fadeOut("50");
             });
-            $("#edit_node_cancel").on("click", function () {
+            $("#edit_node_cancel").on("click", function() {
                 showcase.disableEditMode();
                 showcase.enableEditMode();
-                $("#console").html("");
+                $("#console").fadeOut("50");
             });
         },
         editEdge: true,
         deleteNode: true,
         deleteEdge: true,
-        addNode: function (nodeInfo, callback) {
+        addNode: function(nodeInfo, callback) {
             nodeInfo.label = "new node";
             callback(nodeInfo);
         }
@@ -230,6 +236,13 @@ var options = {
             nodeSpacing: 100,
             edgeMinimization: true
         }
+    },
+    interaction: {
+        keyboard: true,
+        navigationButtons: true,
+        zoomView: true,
+        dragView: true,
+        dragNodes: true
     }
 };
 // initialize network

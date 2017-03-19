@@ -1,10 +1,16 @@
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
 body {
-    font-family: "Microsoft YaHei";
+    font-family: open sans;
 }
 
 #main {
     border: solid 1px #D6D9D8;
     border-top-width: 0;
+}
+
+button {
+    font-family: open sans !important;
 }
 
 #showcase {
@@ -14,18 +20,20 @@ body {
 
 #console {
     position: absolute;
-    text-align:center;
+    text-align: center;
     display: table;
-    background-color: white;
+    background-color: #F0F0F0;
+    left: 2px;
+    bottom: 2px;
 }
 
 #right_click_menu {
-    width:100px;
+    width: 100px;
     position: absolute;
 }
 
 #right_click_menu button {
-    width:100px;
+    width: 100px;
     height: 28px;
     font-size: 12.5px;
     line-height: 14px;
@@ -72,4 +80,27 @@ body {
 .button-wrapper {
     display: table-cell;
     vertical-align: middle;
+}
+
+#edit_lock_wrapper {
+    float: right;
+    margin-right: 5px;
+}
+
+.vis-up, .vis-down, .vis-left, .vis-right {
+    display: none !important;
+}
+
+div.vis-network div.vis-navigation div.vis-button.vis-zoomExtends {
+    right: 10px;
+    top: 20px;
+}
+
+div.vis-network div.vis-navigation div.vis-button.vis-zoomIn {
+    right: 10px;
+    top: 60px;
+}
+div.vis-network div.vis-navigation div.vis-button.vis-zoomOut {
+    right: 10px;
+    top: 100px;
 }
