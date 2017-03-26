@@ -11,6 +11,7 @@ $("document").ready(function() {
             $("#right_click_menu").css("top", e.pageY + 1);
             $("#right_click_menu").fadeIn(10);
         } else if (e.button == 2 && states.current_edit_lock == "locked") {
+            $("#right_click_menu").hide();
             document.getElementById("showcase").oncontextmenu = function() {
                 return true;
             };
